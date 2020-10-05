@@ -83,4 +83,18 @@ public class PessoaClassicController {
 		return "redirect:/classic/pessoas";
 	}
 
+	@PostMapping("/remover/{id}")
+	@Transactional
+	public String delete(@PathVariable("id") Integer id, RedirectAttributes reditAttr) {
+		Optional<Pessoa> optPessoa = pessoaRepository.findById(id);
+		if (optPessoa.isPresent()) {
+			Pessoa p = optPessoa.get();
+			pessoaRepository.deleteById(id);
+			reditAttr.addFlashAttribute("msgSucesso", p.getNome() + " adicionado com sucesso com ID " + p.getId());
+			return "redirect:/classic/pessoas";
+		}
+		reditAttr.addFlashAttribute("msgErro", "Pessoa com ID " + id + " não encontrada");
+		return "redirect:/classic/pessoas";
+	}
+
 }
