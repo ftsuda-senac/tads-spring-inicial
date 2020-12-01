@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * To change this license header, choose License Headers in Project Properties. To change this
+ * template file, choose Tools | Templates and open the template in the editor.
  */
 package br.senac.tads.dsw.exemplosspring.sessao;
 
@@ -20,22 +19,22 @@ import br.senac.tads.dsw.exemplosspring.sessao.item.ItemService;
 @Controller
 @RequestMapping("/layout-dialect")
 public class LayoutDialectController {
-    
-    @Autowired
-    private ItemService itemService;
 
-    @GetMapping("/tela1")
-    public ModelAndView mostrarTela1() {
-        return new ModelAndView("layout/com-layout1");
-    }
+  @Autowired
+  private ItemService itemService;
 
-    @GetMapping("/tela2")
-    public ModelAndView mostrarTela2() {
-        return new ModelAndView("layout/com-layout2");
-    }
+  @GetMapping("/tela1")
+  public ModelAndView mostrarTela1() {
+    return new ModelAndView("layout/com-layout1");
+  }
 
-    @GetMapping("/tela3")
-    public ModelAndView mostrarTela3() {
-        return new ModelAndView("layout/com-layout3").addObject("itens", itemService.findAll());
-    }
+  @GetMapping("/tela2")
+  public ModelAndView mostrarTela2() {
+    return new ModelAndView("layout/com-layout2");
+  }
+
+  @GetMapping("/tela3")
+  public ModelAndView mostrarTela3() {
+    return new ModelAndView("layout/com-layout3").addObject("itens", itemService.findAll());
+  }
 }

@@ -9,59 +9,58 @@ import java.util.List;
  */
 public class UsuarioSistema {
 
-    private String username;
+  private String username;
 
-    private String nomeCompleto;
+  private String nomeCompleto;
 
-    private String hashSenha;
+  private String hashSenha;
 
-    private List<Papel> papeis;
+  private List<Papel> papeis;
 
-    public UsuarioSistema() {
-    }
+  public UsuarioSistema() {}
 
-    public UsuarioSistema(String username, String nomeCompleto,
-            String senhaAberta, List<Papel> papeis) {
-        this.username = username;
-        this.nomeCompleto = nomeCompleto;
-        setSenha(senhaAberta);
-        this.papeis = papeis;
-    }
+  public UsuarioSistema(String username, String nomeCompleto, String senhaAberta,
+      List<Papel> papeis) {
+    this.username = username;
+    this.nomeCompleto = nomeCompleto;
+    setSenha(senhaAberta);
+    this.papeis = papeis;
+  }
 
-    public final void setSenha(String senhaAberta) {
-        this.hashSenha = senhaAberta;
-    }
+  public final void setSenha(String senhaAberta) {
+    this.hashSenha = senhaAberta;
+  }
 
-    public String getUsername() {
-        return username;
-    }
+  public String getUsername() {
+    return username;
+  }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
+  public void setUsername(String username) {
+    this.username = username;
+  }
 
-    public String getNomeCompleto() {
-        return nomeCompleto;
-    }
+  public String getNomeCompleto() {
+    return nomeCompleto;
+  }
 
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
-    }
+  public void setNomeCompleto(String nomeCompleto) {
+    this.nomeCompleto = nomeCompleto;
+  }
 
-    public String getHashSenha() {
-        return hashSenha;
-    }
+  public String getHashSenha() {
+    return hashSenha;
+  }
 
-    public void setHashSenha(String hashSenha) {
-        this.hashSenha = hashSenha;
-    }
+  public void setHashSenha(String hashSenha) {
+    this.hashSenha = hashSenha;
+  }
 
-    public List<Papel> getPapeis() {
-        return papeis;
-    }
+  public List<Papel> getPapeis() {
+    return papeis;
+  }
 
-    public void setPapeis(List<Papel> papeis) {
-        this.papeis = papeis;
-    }
+  public void setPapeis(List<Papel> papeis) {
+    this.papeis = papeis;
+  }
 
 }

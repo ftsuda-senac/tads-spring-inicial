@@ -1,7 +1,6 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * To change this license header, choose License Headers in Project Properties. To change this
+ * template file, choose Tools | Templates and open the template in the editor.
  */
 package br.senac.tads.dsw.exemplospringsecurity.controller;
 
@@ -18,25 +17,22 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/protegido")
 public class ProtegidoController {
 
-    @GetMapping("/peao")
-    public ModelAndView mostrarPeaoPage() {
-        return new ModelAndView("resultado")
-                .addObject("titulo", "Página do PEAO")
-                .addObject("msg", "Usuário logado possui papel \"PEAO\"");
-    }
+  @GetMapping("/peao")
+  public ModelAndView mostrarPeaoPage() {
+    return new ModelAndView("resultado").addObject("titulo", "Página do PEAO").addObject("msg",
+        "Usuário logado possui papel \"PEAO\"");
+  }
 
-    @GetMapping("/fodon")
-    public ModelAndView mostrarFodonPage() {
-        return new ModelAndView("resultado")
-                .addObject("titulo", "Página do FODON")
-                .addObject("msg", "Usuário logado possui papel \"FODON\"");
-    }
+  @GetMapping("/fodon")
+  public ModelAndView mostrarFodonPage() {
+    return new ModelAndView("resultado").addObject("titulo", "Página do FODON").addObject("msg",
+        "Usuário logado possui papel \"FODON\"");
+  }
 
-    @GetMapping("/god")
-    public ModelAndView mostrargODPage() {
-        return new ModelAndView("resultado")
-                .addObject("titulo", "Página do GOD")
-                .addObject("msg", "Usuário logado possui papel \"GOD\"");
-    }
+  @GetMapping("/god")
+  public ModelAndView mostrargODPage() {
+    return new ModelAndView("resultado").addObject("titulo", "Página do GOD").addObject("msg",
+        "Usuário logado possui papel \"GOD\"");
+  }
 
 }
