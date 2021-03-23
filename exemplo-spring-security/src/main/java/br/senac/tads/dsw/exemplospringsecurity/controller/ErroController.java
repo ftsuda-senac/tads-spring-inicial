@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/erro")
 public class ErroController {
 
-  @GetMapping("/403")
-  public String erroNaoPermitido() {
-    return "erro403";
-  }
+    @GetMapping("/403")
+    public String erroNaoPermitido() {
+        return "erro403";
+    }
 
 }

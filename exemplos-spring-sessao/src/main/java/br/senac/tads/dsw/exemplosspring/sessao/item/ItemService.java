@@ -12,12 +12,12 @@ import java.util.List;
  */
 public interface ItemService {
 
-  List<Item> findAll();
+    List<Item> findAll();
 
-  Item findById(Integer id);
+    Item findById(Integer id);
 
-  Item save(Item item);
+    Item save(Item item);
 
-  void deleteById(Integer id);
+    void deleteById(Integer id);
 
 }

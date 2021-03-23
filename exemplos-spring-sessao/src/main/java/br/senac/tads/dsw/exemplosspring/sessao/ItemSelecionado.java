@@ -16,34 +16,34 @@ import br.senac.tads.dsw.exemplosspring.sessao.item.Item;
  */
 public class ItemSelecionado implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  private Item item;
+    private Item item;
 
-  private LocalDateTime dataHoraInclusao;
+    private LocalDateTime dataHoraInclusao;
 
-  public ItemSelecionado() {
+    public ItemSelecionado() {
 
-  }
+    }
 
-  public ItemSelecionado(Item item) {
-    this.item = item;
-    this.dataHoraInclusao = LocalDateTime.now();
-  }
+    public ItemSelecionado(Item item) {
+        this.item = item;
+        this.dataHoraInclusao = LocalDateTime.now();
+    }
 
-  public Item getItem() {
-    return item;
-  }
+    public Item getItem() {
+        return item;
+    }
 
-  public void setItem(Item item) {
-    this.item = item;
-  }
+    public void setItem(Item item) {
+        this.item = item;
+    }
 
-  public LocalDateTime getDataHoraInclusao() {
-    return dataHoraInclusao;
-  }
+    public LocalDateTime getDataHoraInclusao() {
+        return dataHoraInclusao;
+    }
 
-  public void setDataHoraInclusao(LocalDateTime dataHoraInclusao) {
-    this.dataHoraInclusao = dataHoraInclusao;
-  }
+    public void setDataHoraInclusao(LocalDateTime dataHoraInclusao) {
+        this.dataHoraInclusao = dataHoraInclusao;
+    }
 }

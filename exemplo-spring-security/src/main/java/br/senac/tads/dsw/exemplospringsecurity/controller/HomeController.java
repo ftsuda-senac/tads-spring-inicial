@@ -17,9 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("/home")
 public class HomeController {
 
-  @GetMapping
-  public ModelAndView mostrarHome() {
-    return new ModelAndView("home").addObject("usuario", null);
-  }
+    @GetMapping
+    public ModelAndView mostrarHome() {
+        return new ModelAndView("home").addObject("usuario", null);
+    }
 
 }

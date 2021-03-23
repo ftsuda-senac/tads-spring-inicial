@@ -12,8 +12,8 @@ import java.util.List;
  */
 public interface CategoriaService {
 
-  List<Categoria> findAll();
+    List<Categoria> findAll();
 
-  Categoria findById(Integer id);
+    Categoria findById(Integer id);
 
 }

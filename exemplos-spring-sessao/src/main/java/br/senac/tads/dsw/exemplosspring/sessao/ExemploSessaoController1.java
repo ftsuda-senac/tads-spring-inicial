@@ -29,38 +29,38 @@ import br.senac.tads.dsw.exemplosspring.sessao.item.ItemService;
 @RequestMapping("/exemplo-sessao1")
 public class ExemploSessaoController1 {
 
-  @Autowired
-  private ItemService itemService;
+    @Autowired
+    private ItemService itemService;
 
-  @GetMapping
-  public ModelAndView mostrarTela() {
-    return new ModelAndView("exemplo-sessao1").addObject("itens", itemService.findAll());
-  }
+    @GetMapping
+    public ModelAndView mostrarTela() {
+        return new ModelAndView("exemplo-sessao1").addObject("itens", itemService.findAll());
+    }
 
-  @PostMapping
-  public ModelAndView adicionarItem(@ModelAttribute("itemId") Integer itemId,
-      List<ItemSelecionado> itensSelecionados, RedirectAttributes redirAttr) {
-    Item item = itemService.findById(itemId);
-    itensSelecionados.add(new ItemSelecionado(item));
-    redirAttr.addFlashAttribute("msg", "Item ID " + item.getId() + " adicionado com sucesso");
-    return new ModelAndView("redirect:/exemplo-sessao1");
-  }
+    @PostMapping
+    public ModelAndView adicionarItem(@ModelAttribute("itemId") Integer itemId,
+            List<ItemSelecionado> itensSelecionados, RedirectAttributes redirAttr) {
+        Item item = itemService.findById(itemId);
+        itensSelecionados.add(new ItemSelecionado(item));
+        redirAttr.addFlashAttribute("msg", "Item ID " + item.getId() + " adicionado com sucesso");
+        return new ModelAndView("redirect:/exemplo-sessao1");
+    }
 
-  @GetMapping("/limpar")
-  public ModelAndView limparSessao(List<ItemSelecionado> itensSelecionados,
-      RedirectAttributes redirAttr) {
-    itensSelecionados.clear();
-    redirAttr.addFlashAttribute("msg", "Itens removidos");
-    return new ModelAndView("redirect:/exemplo-sessao1");
-  }
+    @GetMapping("/limpar")
+    public ModelAndView limparSessao(List<ItemSelecionado> itensSelecionados,
+            RedirectAttributes redirAttr) {
+        itensSelecionados.clear();
+        redirAttr.addFlashAttribute("msg", "Itens removidos");
+        return new ModelAndView("redirect:/exemplo-sessao1");
+    }
 
-  public List<ItemSelecionado> getItensSelecionados() {
-    return new ArrayList<>();
-  }
+    public List<ItemSelecionado> getItensSelecionados() {
+        return new ArrayList<>();
+    }
 
-  @ModelAttribute("titulo")
-  public String getTitulo() {
-    return "Exemplo Sessao 1 - Uso do @SessionAttributes";
-  }
+    @ModelAttribute("titulo")
+    public String getTitulo() {
+        return "Exemplo Sessao 1 - Uso do @SessionAttributes";
+    }
 
 }

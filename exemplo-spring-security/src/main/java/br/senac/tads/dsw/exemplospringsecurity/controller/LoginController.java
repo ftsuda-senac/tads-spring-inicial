@@ -11,8 +11,8 @@ package br.senac.tads.dsw.exemplospringsecurity.controller;
 
 public class LoginController {
 
-  public String mostrarFormLogin() {
-    return "login";
-  }
+    public String mostrarFormLogin() {
+        return "login";
+    }
 
 }

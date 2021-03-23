@@ -20,21 +20,21 @@ import br.senac.tads.dsw.exemplosspring.sessao.item.ItemService;
 @RequestMapping("/sem-layout")
 public class SemLayoutController {
 
-  @Autowired
-  private ItemService itemService;
+    @Autowired
+    private ItemService itemService;
 
-  @GetMapping("/tela1")
-  public ModelAndView mostrarTela1() {
-    return new ModelAndView("layout/sem-layout1");
-  }
+    @GetMapping("/tela1")
+    public ModelAndView mostrarTela1() {
+        return new ModelAndView("layout/sem-layout1");
+    }
 
-  @GetMapping("/tela2")
-  public ModelAndView mostrarTela2() {
-    return new ModelAndView("layout/sem-layout2");
-  }
+    @GetMapping("/tela2")
+    public ModelAndView mostrarTela2() {
+        return new ModelAndView("layout/sem-layout2");
+    }
 
-  @GetMapping("/tela3")
-  public ModelAndView mostrarTela3() {
-    return new ModelAndView("layout/sem-layout3").addObject("itens", itemService.findAll());
-  }
+    @GetMapping("/tela3")
+    public ModelAndView mostrarTela3() {
+        return new ModelAndView("layout/sem-layout3").addObject("itens", itemService.findAll());
+    }
 }
