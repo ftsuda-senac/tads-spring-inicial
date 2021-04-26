@@ -7,13 +7,11 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.Transactional;
-
 import br.senac.tads.dsw.exemplorest.dominio.Interesse;
 import br.senac.tads.dsw.exemplorest.dominio.InteresseRepository;
 import br.senac.tads.dsw.exemplorest.dominio.Pessoa;
@@ -43,6 +41,8 @@ public class ExemploRestApplication implements CommandLineRunner {
         return interessesSelecionados;
     }
 
+    // Executa após a inicialização do sistema para cadastrar dados iniciais no banco de dados H2
+    // Para reiniciar os dados, parar a aplicação, apagar o arquivo de banco de dados do disco e reiniciar a aplicação
     @Override
     @Transactional
     public void run(String... args) throws Exception {

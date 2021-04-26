@@ -1,4 +1,4 @@
-package br.senac.tads.dsw.exemplospringsecurity.service;
+package br.senac.tads.dsw.exemplospringsecurity.dominio;
 
 import java.util.List;
 
@@ -18,16 +18,12 @@ public class UsuarioSistema {
 
     public UsuarioSistema() {}
 
-    public UsuarioSistema(String username, String nomeCompleto, String senhaAberta,
+    public UsuarioSistema(String username, String nomeCompleto, String hashSenha,
             List<Papel> papeis) {
         this.username = username;
         this.nomeCompleto = nomeCompleto;
-        setSenha(senhaAberta);
+        this.hashSenha = hashSenha;
         this.papeis = papeis;
-    }
-
-    public final void setSenha(String senhaAberta) {
-        this.hashSenha = senhaAberta;
     }
 
     public String getUsername() {

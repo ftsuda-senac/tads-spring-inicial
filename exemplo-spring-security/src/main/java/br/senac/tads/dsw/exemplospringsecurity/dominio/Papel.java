@@ -1,4 +1,4 @@
-package br.senac.tads.dsw.exemplospringsecurity.service;
+package br.senac.tads.dsw.exemplospringsecurity.dominio;
 
 /**
  *
