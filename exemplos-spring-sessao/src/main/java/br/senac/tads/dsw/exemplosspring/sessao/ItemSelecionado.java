@@ -4,10 +4,8 @@
  */
 package br.senac.tads.dsw.exemplosspring.sessao;
 
-
 import java.io.Serializable;
 import java.time.LocalDateTime;
-
 import br.senac.tads.dsw.exemplosspring.sessao.item.Item;
 
 /**
@@ -22,13 +20,16 @@ public class ItemSelecionado implements Serializable {
 
     private LocalDateTime dataHoraInclusao;
 
+    private String userAgent;
+
     public ItemSelecionado() {
 
     }
 
-    public ItemSelecionado(Item item) {
+    public ItemSelecionado(Item item, String userAgent) {
         this.item = item;
         this.dataHoraInclusao = LocalDateTime.now();
+        this.userAgent = userAgent;
     }
 
     public Item getItem() {
@@ -45,5 +46,13 @@ public class ItemSelecionado implements Serializable {
 
     public void setDataHoraInclusao(LocalDateTime dataHoraInclusao) {
         this.dataHoraInclusao = dataHoraInclusao;
+    }
+
+    public String getUserAgent() {
+        return userAgent;
+    }
+
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
     }
 }
