@@ -37,7 +37,7 @@ import br.senac.tads.dsw.exemplosspring.produto.ProdutoRepository;
  * @author fernando.tsuda
  */
 @Controller
-@RequestMapping("/produto")
+@RequestMapping("/produtos")
 public class ProdutoController {
 
     @Autowired
@@ -58,12 +58,12 @@ public class ProdutoController {
             // Lista todos os produtos usando paginacao
             resultados = produtoRepository.findAll(offset, qtd);
         }
-        return new ModelAndView("produto/lista").addObject("produtos", resultados);
+        return new ModelAndView("produtos/lista").addObject("produtos", resultados);
     }
 
     @GetMapping("/novo")
     public ModelAndView adicionarNovo() {
-        return new ModelAndView("produto/form").addObject("produto", new Produto());
+        return new ModelAndView("produtos/form").addObject("produto", new Produto());
     }
 
     @GetMapping("/{id}/editar")
@@ -80,7 +80,7 @@ public class ProdutoController {
         if (prod.getImagens() != null && !prod.getImagens().isEmpty()) {
             prod.setImagensList(new ArrayList<>(prod.getImagens()));
         }
-        return new ModelAndView("produto/form").addObject("produto", prod);
+        return new ModelAndView("produtos/form").addObject("produto", prod);
     }
 
     @PostMapping("/salvar")
@@ -107,7 +107,7 @@ public class ProdutoController {
         produtoRepository.save(produto);
         redirAttr.addFlashAttribute("msgSucesso",
                 "Produto " + produto.getNome() + " salvo com sucesso");
-        return new ModelAndView("redirect:/produto");
+        return new ModelAndView("redirect:/produtos");
     }
 
     @PostMapping("/{id}/remover")
@@ -116,7 +116,7 @@ public class ProdutoController {
         produtoRepository.deleteById(id);
         redirectAttributes.addFlashAttribute("msgSucesso",
                 "Produto ID " + id + " removido com sucesso");
-        return new ModelAndView("redirect:/produto");
+        return new ModelAndView("redirect:/produtos");
     }
 
     @ModelAttribute("categorias")
