@@ -13,7 +13,7 @@
     <artifactId>exemplo-spring-security</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
-    <name>exemplo-spring-securityurity</name>
+    <name>exemplo-spring-security</name>
     <description>Exemplo de Login usando Spring Security</description>
 
     <properties>
