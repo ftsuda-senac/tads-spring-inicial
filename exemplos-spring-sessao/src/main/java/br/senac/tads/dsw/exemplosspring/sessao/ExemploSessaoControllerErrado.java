@@ -31,14 +31,22 @@ public class ExemploSessaoControllerErrado implements Serializable {
 
     @GetMapping
     public ModelAndView mostrarTela() {
-        return new ModelAndView("exemplo-sessao-errado").addObject("itens", itemService.findAll());
+        return new ModelAndView("exemplo-sessao-errado")
+                .addObject("itens", itemService.findAll());
     }
 
     @PostMapping
-    public ModelAndView adicionarItem(@ModelAttribute("itemId") Integer itemId,
-            RedirectAttributes redirAttr, HttpServletRequest servletReq) {
+    public ModelAndView adicionarItem(
+            @ModelAttribute("itemId") Integer itemId,
+            RedirectAttributes redirAttr,
+            HttpServletRequest servletReq) {
         Item item = itemService.findById(itemId);
-        itensSelecionados.add(new ItemSelecionado(item, servletReq.getHeader("user-agent")));
+        itensSelecionados.add(
+                new ItemSelecionado(
+                        item,
+                        servletReq.getHeader("user-agent"),
+                        servletReq.getRemoteAddr()
+                ));
         redirAttr.addFlashAttribute("msg", "Item ID " + item.getId() + " adicionado com sucesso");
         return new ModelAndView("redirect:/exemplo-sessao-errado");
     }

@@ -33,20 +33,30 @@ public class ExemploSessaoController1 {
 
     @GetMapping
     public ModelAndView mostrarTela() {
-        return new ModelAndView("exemplo-sessao1").addObject("itens", itemService.findAll());
+        return new ModelAndView("exemplo-sessao1")
+                .addObject("itens", itemService.findAll());
     }
 
     @PostMapping
-    public ModelAndView adicionarItem(@ModelAttribute("itemId") Integer itemId,
-            List<ItemSelecionado> itensSelecionados, RedirectAttributes redirAttr, HttpServletRequest servletReq) {
+    public ModelAndView adicionarItem(
+            @ModelAttribute("itemId") Integer itemId,
+            List<ItemSelecionado> itensSelecionados,
+            RedirectAttributes redirAttr,
+            HttpServletRequest servletReq) {
         Item item = itemService.findById(itemId);
-        itensSelecionados.add(new ItemSelecionado(item, servletReq.getHeader("user-agent")));
+        itensSelecionados.add(
+                new ItemSelecionado(
+                        item,
+                        servletReq.getHeader("user-agent"),
+                        servletReq.getRemoteAddr()
+                ));
         redirAttr.addFlashAttribute("msg", "Item ID " + item.getId() + " adicionado com sucesso");
         return new ModelAndView("redirect:/exemplo-sessao1");
     }
 
     @GetMapping("/limpar")
-    public ModelAndView limparSessao(List<ItemSelecionado> itensSelecionados,
+    public ModelAndView limparSessao(
+            List<ItemSelecionado> itensSelecionados,
             RedirectAttributes redirAttr) {
         itensSelecionados.clear();
         redirAttr.addFlashAttribute("msg", "Itens removidos");
