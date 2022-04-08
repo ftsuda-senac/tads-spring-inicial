@@ -1,4 +1,4 @@
-package br.senac.tads.dsw.exemplosspring.sessao;
+package br.senac.tads.dsw.exemplosspring.links;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
