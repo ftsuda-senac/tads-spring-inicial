@@ -3,7 +3,10 @@ package br.senac.tads.dsw.exemplospringsecurity.dominio;
 import java.util.List;
 
 /**
- *
+ * Após implementar UserDetais:
+ * - isAccountNonExpired() -> Verificar se o cadastro do usuario está expirado (Ex: data de validade da conta)
+ * - isAccountNonLocked() -> Verificar se usuário está bloqueado (Ec: quantidade de logins errados excedida)
+ * - isCredentialsNonExpired() -> Verificar se a senha está expirada (Ex: X dias após ultima atualização da senha)
  * @author fernando.tsuda
  */
 public class UsuarioSistema {
