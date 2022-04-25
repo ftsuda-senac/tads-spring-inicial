@@ -5,6 +5,8 @@ import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.Transient;
 import javax.validation.constraints.Digits;
@@ -27,6 +29,7 @@ public class DadosPessoais {
     private String nome;
 
     @NotBlank
+    @Size(max = 100)
     private String apelido;
 
     @Size(max = 1000)
@@ -38,6 +41,7 @@ public class DadosPessoais {
     private LocalDate dataNascimento;
 
     @Email
+    @NotBlank
     private String email;
 
     private String telefone;
@@ -46,7 +50,7 @@ public class DadosPessoais {
 
     @Transient
     private String senhaRepetida;
-    
+
     @Min(1)
     @Max(99)
     private int numero;
@@ -66,52 +70,49 @@ public class DadosPessoais {
     //  1 - MASCULINO
     //  2 - OUTRO
     private int genero = -1;
-    
-    @NotEmpty
+
     private Set<Interesse> interesses;
-    
+
     private Set<FotoPessoa> fotos;
-    
+
     private boolean cadastroAtivo;
-    
+
     private LocalDateTime dataCadastro;
-    
 
-    public long getIdade() {
-        if (this.getDataNascimento() != null) {
-            return ChronoUnit.YEARS.between(this.getDataNascimento(), LocalDate.now());
-        }
-        return 0;
+    // Utilitarios para funcionamento do cadastro
+    @Transient
+    @NotEmpty
+    private List<Integer> interessesIds;
+
+    @Transient
+    private String arquivoFoto;
+
+    public DadosPessoais() {
+        interessesIds = new ArrayList<>();
     }
 
-    /*
-     * IMC = peso / (altura * altura)
-     * Magreza, quando o resultado é menor que 18,5 kg/m2;
-     * Normal, quando o resultado está entre 18,5 e 24,9 kg/m2;
-     * Sobrepeso, quando o resultado está entre 24,9 e 30 kg/m2;
-     * Obesidade, quando o resultado é maior que 30 kg/m2.
-     */
-    public BigDecimal getImc() {
-        if (this.getPeso() != null && this.getAltura() != null) {
-            BigDecimal basePeso = new BigDecimal(1).multiply(this.getPeso());
-            BigDecimal baseAltura = new BigDecimal(1).multiply(this.getAltura()).multiply(this.getAltura());
-            return basePeso.divide(baseAltura, RoundingMode.HALF_UP);
-        }
-        return new BigDecimal(0);
+    public DadosPessoais(String nome, String apelido, String descricao, String dataNascimento, String email, String telefone, String senha, int numero, String alturaStr, String pesoStr, int genero, List<Integer> interessesIds, String arquivoFoto, String urlFotoGerada) {
+        this.setNome(nome);
+        this.setApelido(apelido);
+        this.setDescricao(descricao);
+        this.setDataNascimento(LocalDate.parse(dataNascimento));
+        this.setEmail(email);
+        this.setTelefone(telefone);
+        this.setSenha(senha);
+        this.setSenhaRepetida(senha);
+        this.setNumero(numero);
+        this.setAltura(new BigDecimal(alturaStr));
+        this.setPeso(new BigDecimal(pesoStr));
+        this.setGenero(genero);
+        this.setInteressesIds(interessesIds);
+        this.setArquivoFoto(arquivoFoto);
+        this.setInteressesIds(interessesIds);
+        this.setArquivoFoto(arquivoFoto);
     }
 
-    public String getImcTexto() {
-        BigDecimal imc = getImc();
-        if (imc.compareTo(new BigDecimal(0)) == 0) {
-            return "NÃO CALCULADO";
-        } else if (imc.compareTo(new BigDecimal("18.5")) == -1) {
-            return "MAGREZA";
-        } else if (imc.compareTo(new BigDecimal("24.9")) == -1) {
-            return "NORMAL";
-        } else if (imc.compareTo(new BigDecimal("30")) == -1) {
-            return "SOBREPESO";
-        }
-        return "OBESIDADE";
+    public DadosPessoais(Integer id, String nome, String apelido, String descricao, String dataNascimento, String email, String telefone, String senha, int numero, String alturaStr, String pesoStr, int genero, List<Integer> interessesIds, String arquivoFoto, String urlFotoGerada) {
+        this(nome, apelido, descricao, dataNascimento, email, telefone, senha, numero, alturaStr, pesoStr, genero, interessesIds, arquivoFoto, urlFotoGerada);
+        this.setId(id);
     }
 
     public Integer getId() {
@@ -248,6 +249,70 @@ public class DadosPessoais {
 
     public void setDataCadastro(LocalDateTime dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public List<Integer> getInteressesIds() {
+        return interessesIds;
+    }
+
+    public void setInteressesIds(List<Integer> interessesIds) {
+        this.interessesIds = interessesIds;
+    }
+
+    public String getArquivoFoto() {
+        return arquivoFoto;
+    }
+
+    public void setArquivoFoto(String arquivoFoto) {
+        this.arquivoFoto = arquivoFoto;
+    }
+
+    /*
+     * ######## METODOS UTILITARIOS PARA USAR NOS TEMPLATES ########
+     */
+    public long getIdade() {
+        if (this.getDataNascimento() != null) {
+            return ChronoUnit.YEARS.between(this.getDataNascimento(), LocalDate.now());
+        }
+        return 0;
+    }
+
+    /*
+     * IMC = peso / (altura * altura)
+     * Magreza, quando o resultado é menor que 18,5 kg/m2;
+     * Normal, quando o resultado está entre 18,5 e 24,9 kg/m2;
+     * Sobrepeso, quando o resultado está entre 24,9 e 30 kg/m2;
+     * Obesidade, quando o resultado é maior que 30 kg/m2.
+     */
+    public BigDecimal getImc() {
+        if (this.getPeso() != null && this.getAltura() != null) {
+            BigDecimal basePeso = new BigDecimal(1).multiply(this.getPeso());
+            BigDecimal baseAltura = new BigDecimal(1).multiply(this.getAltura()).multiply(this.getAltura());
+            return basePeso.divide(baseAltura, RoundingMode.HALF_UP);
+        }
+        return new BigDecimal(0);
+    }
+
+    public String getImcTexto() {
+        BigDecimal imc = getImc();
+        if (imc.compareTo(new BigDecimal(0)) == 0) {
+            return "NÃO CALCULADO";
+        } else if (imc.compareTo(new BigDecimal("18.5")) == -1) {
+            return "MAGREZA";
+        } else if (imc.compareTo(new BigDecimal("24.9")) == -1) {
+            return "NORMAL";
+        } else if (imc.compareTo(new BigDecimal("30")) == -1) {
+            return "SOBREPESO";
+        }
+        return "OBESIDADE";
+    }
+
+    public String getLinkedinUrl() {
+        return "https://br.linkedin.com/in/" + apelido;
+    }
+
+    public String getGithubUrl() {
+        return "https://github.com/" + apelido;
     }
 
 }

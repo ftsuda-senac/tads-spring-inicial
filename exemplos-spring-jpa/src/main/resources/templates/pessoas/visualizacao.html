@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title th:text="${dados.nome + ' - Dados pessoais'}"></title>
+        <link rel="stylesheet" th:href="@{/css/estilos-visualizacao.css}" />
+    </head>
+
+    <body>
+        <main>
+            <header>
+                <h1 th:text="${dados.nome}">Fernando Tsuda</h1>
+            </header>
+            <section class="dados-contato">
+                <div>
+                    <img th:src="@{__${imagemUrlPrefix}__/__${dados.arquivoFoto}__}" title="Foto do perfil" />
+                </div>
+                <div>
+                    <p>Telefone: <span th:text="${dados.telefone}">(11) 99999-1234</span></p>
+                    <p>E-mail: <span th:text="${dados.email}">fernando.tsuda@sp.senac.br</span></p>
+                    <p>Data de nascimento: <span th:text="${#temporals.format(dados.dataNascimento, 'dd/MM/yyyy')}">01/01/1982</span></p>
+                    <p>LinkedIn: <a th:href="@{dados.linkedinUrl}" th:text="${dados.linkedinUrl}">https://br.linkedin.com/in/ftsuda</a></p>
+                    <p>Github: <a th:href="@{dados.githubUrl}" th:text="${dados.githubUrl}">https://github.com/ftsuda-senac</a></p>
+                </div>
+            </section>
+            <section class="dados-gerais interesses">
+                <h3>Interesses</h3>
+                <span th:unless="${dados.interesses != null && #arrays.length(dados.interesses) > 0}">Nenhum selecionado</span>
+                <ul th:if="${dados.interesses != null && #arrays.length(dados.interesses) > 0}" th:each="interesse : ${dados.interesses}">
+                    <li th:text="${interesse.nome}"></li>
+                </ul>
+            </section>
+            <section class="dados-gerais" id="outros">
+                <h3>Outras informações</h3>
+                <p>Sexo:
+                <th:block th:switch="${dados.genero}">
+                    <span th:case="0">Feminino</span>
+                    <span th:case="1">Masculino</span>
+                    <span th:case="2">Outro</span>
+                    <span th:case="*">Não informado</span>
+                </th:block>
+                </p>
+                <p>Número: <span th:text="${dados.numero}"></span></p>
+                <p>Altura: <span th:text="${dados.altura}"></span> metros</p>
+                <p>Peso: <span th:text="${dados.peso}"></span> kg</p>
+                <p>IMC: <span><span th:text="${dados.imc}"></span>&nbsp;(<em th:text="${dados.imcTexto}"></em>)</span></p>
+            </section>
+        </main>
+    </body>
+
+</html>

@@ -1,10 +1,15 @@
 package br.senac.tads.dsw.exemplosspring.pessoas;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import org.springframework.context.annotation.Primary;
+import org.springframework.stereotype.Repository;
 
+@Repository
+@Primary
 public class InteresseRepositoryMockImpl implements InteresseRepository {
 
     private Map<Integer, Interesse> mapItens;
@@ -23,17 +28,21 @@ public class InteresseRepositoryMockImpl implements InteresseRepository {
 
     @Override
     public List<Interesse> findAll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return new ArrayList<>(mapItens.values());
     }
 
     @Override
     public Optional<Interesse> findById(Integer id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return Optional.ofNullable(mapItens.get(id));
     }
 
     @Override
     public Interesse save(Interesse interesse) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if (interesse.getId() == null) {
+            interesse.setId(++sequenciaId);
+        }
+        mapItens.put(interesse.getId(), interesse);
+        return interesse;
     }
 
 }
