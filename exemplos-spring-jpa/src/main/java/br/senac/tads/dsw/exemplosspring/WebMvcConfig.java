@@ -31,7 +31,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
     }
     
     /**
-     * Redireciona uma requisição de / para uma tela espeficicada<br>
+     * Redireciona uma requisição de / ou /index.html para uma tela espeficicada<br>
      * Referência: http://zetcode.com/springboot/viewcontrollerregistry/
      *
      * @param registry
