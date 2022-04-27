@@ -1,0 +1,31 @@
+@charset 'utf-8';
+
+.dados-pessoa {
+    /* Gerado em https://css.glass/ */
+    background: rgba(255, 255, 255, 0.2);
+    border: 8px outset rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    transition: all 0.5s ease-in-out;
+}
+.dados-pessoa:hover {
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(10px);
+    transform: scale(1.03);
+    box-shadow: 5px 9px 30px rgba(0, 0, 0, 0.8);
+}
+
+.dados-pessoa > .pessoa-contatos > a {
+    white-space: nowrap;
+}
+
+.dados-pessoa > :is(.pessoa-contatos, .pessoa-interesses) {
+    background-color: white;
+}
+
+.dados-pessoa > .card-footer {
+    background: linear-gradient(90deg, #e5e5e5 0%, #a0a0a0 100%);
+}

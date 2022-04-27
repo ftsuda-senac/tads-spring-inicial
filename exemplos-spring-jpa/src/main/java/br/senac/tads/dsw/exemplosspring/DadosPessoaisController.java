@@ -115,7 +115,7 @@ public class DadosPessoaisController {
     public List<Interesse> getInteresses() {
         return interesseRepository.findAll();
     }
-    
+
     @ModelAttribute("imagemUrlPrefix")
     public String imagemUrlPrefix(@Value("${app.imagem-url-prefix}") String imagemUrlPrefix) {
         return imagemUrlPrefix;

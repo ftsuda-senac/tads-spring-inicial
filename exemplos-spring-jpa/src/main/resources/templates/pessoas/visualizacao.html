@@ -16,14 +16,14 @@
             </header>
             <section class="dados-contato">
                 <div>
-                    <img th:src="@{__${imagemUrlPrefix}__/__${dados.arquivoFoto}__}" title="Foto do perfil" />
+                    <img class="pessoa-avatar" th:src="@{__${imagemUrlPrefix}__/__${dados.arquivoFoto}__}" title="Foto do perfil" />
                 </div>
                 <div>
-                    <p>Telefone: <span th:text="${dados.telefone}">(11) 99999-1234</span></p>
-                    <p>E-mail: <span th:text="${dados.email}">fernando.tsuda@sp.senac.br</span></p>
                     <p>Data de nascimento: <span th:text="${#temporals.format(dados.dataNascimento, 'dd/MM/yyyy')}">01/01/1982</span></p>
-                    <p>LinkedIn: <a th:href="@{dados.linkedinUrl}" th:text="${dados.linkedinUrl}">https://br.linkedin.com/in/ftsuda</a></p>
-                    <p>Github: <a th:href="@{dados.githubUrl}" th:text="${dados.githubUrl}">https://github.com/ftsuda-senac</a></p>
+                    <p>Telefone: <span th:text="${dados.telefone}">(11) 99999-1234</span></p>
+                    <p>E-mail: <span th:text="${dados.email}">BATATINHA123@teste.com.br</span></p>
+                    <p>LinkedIn: <a th:href="@{dados.linkedinUrl}" th:text="${dados.linkedinUrl}">https://br.linkedin.com/in/BATATINHA123</a></p>
+                    <p>Github: <a th:href="@{dados.githubUrl}" th:text="${dados.githubUrl}">https://github.com/BATATINHA123</a></p>
                 </div>
             </section>
             <section class="dados-gerais interesses">
@@ -49,6 +49,15 @@
                 <p>IMC: <span><span th:text="${dados.imc}"></span>&nbsp;(<em th:text="${dados.imcTexto}"></em>)</span></p>
             </section>
         </main>
+        <script th:src="@{/js/funcoes.js}"></script>
+        <script th:inline="javascript">
+            ready(function() {
+                // Carrega imagem padrão para avatar caso a imagem original não exista
+                document.querySelector('.pessoa-avatar').addEventListener('error', function(evt) {
+                  evt.currentTarget.src = '[(@{/img/padrao.jpg})]';
+                });
+            });
+        </script>
     </body>
 
 </html>

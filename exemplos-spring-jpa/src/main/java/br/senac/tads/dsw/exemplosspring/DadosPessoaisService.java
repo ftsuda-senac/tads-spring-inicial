@@ -61,7 +61,6 @@ public class DadosPessoaisService {
                 dados.setSenha(dadosAntigos.getSenha());
                 dados.setSenhaRepetida(dadosAntigos.getSenha());
                 dados.setFotos(dadosAntigos.getFotos());
-                
                 dados.setDataCadastro(dadosAntigos.getDataCadastro());
                 dados.setCadastroAtivo(dadosAntigos.isCadastroAtivo());
             }

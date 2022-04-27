@@ -147,32 +147,36 @@
                     <div class="col-sm-10">
                         <div class="form-check form-check-inline">
                             <input type="radio" class="form-check-input"
-                                   id="generoI" value="-1" th:field="*{genero}"
+                                   id="generoI" value="-1"
+                                   th:field="*{genero}"
                                    />
-                            <label class="form-check-label" for="generoF">Não informar</label>
+                            <label class="form-check-label" for="generoI">Não informar</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input type="radio" class="form-check-input"
-                                   id="generoF" value="0" th:field="*{genero}"
+                                   id="generoF" value="0"
+                                   th:field="*{genero}"
                                    />
                             <label class="form-check-label" for="generoF">Feminino</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input type="radio" class="form-check-input"
-                                   id="generoM" value="1" th:field="*{genero}"
+                                   id="generoM" value="1"
+                                   th:field="*{genero}"
                                    />
                             <label class="form-check-label" for="generoM">Masculino</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input type="radio"  class="form-check-input"
-                                   id="generoO" value="2" th:field="*{genero}"
+                                   id="generoO" value="2"
+                                   th:field="*{genero}"
                                    />
                             <label class="form-check-label" for="generoO">Outro</label>
                         </div>
                     </div>
                 </fieldset>
                 <fieldset class="row mb-3">
-                    <legend class="col-sm-2 col-form-label pt-0">Interesses</legend>                        
+                    <legend class="col-sm-2 col-form-label pt-0">Interesses</legend>
                     <div class="col-sm-10">
                         <div class="form-check form-check-inline" th:each="opcaoInteresse : ${opcoesInteresses}">
                             <input type="checkbox" class="form-check-input"
@@ -187,12 +191,12 @@
                 <div class="row">
                     <div class="col-md-3 offset-md-3">
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-success">Salvar</button>
+                            <a th:href="@{/pessoas}" role="button" class="btn btn-outline-dark">Cancelar</a>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="d-grid">
-                            <a th:href="@{/pessoas}" role="button" class="btn btn-outline-dark">Cancelar</a>
+                            <button type="submit" class="btn btn-success">Salvar</button>
                         </div>
                     </div>
                 </div>

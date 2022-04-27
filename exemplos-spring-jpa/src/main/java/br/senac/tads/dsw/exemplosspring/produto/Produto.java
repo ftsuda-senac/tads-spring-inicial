@@ -16,7 +16,7 @@ public class Produto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private Long id;
+    private Integer id;
 
     @NotBlank
     @Size(min = 1, max = 100)
@@ -68,7 +68,7 @@ public class Produto implements Serializable {
         this.dtCadastro = dtCadastro;
     }
 
-    public Produto(Long id, String nome, String descricao, BigDecimal precoCompra,
+    public Produto(Integer id, String nome, String descricao, BigDecimal precoCompra,
             BigDecimal precoVenda, int quantidade, boolean disponivel, LocalDateTime dtCadastro) {
         this(nome, descricao, precoCompra, precoVenda, quantidade, disponivel, dtCadastro);
         this.id = id;
@@ -82,7 +82,7 @@ public class Produto implements Serializable {
         this.categorias = categorias;
     }
 
-    public Produto(Long id, String nome, String descricao, BigDecimal precoCompra,
+    public Produto(Integer id, String nome, String descricao, BigDecimal precoCompra,
             BigDecimal precoVenda, int quantidade, boolean disponivel, LocalDateTime dtCadastro,
             Set<ImagemProduto> imagens, Set<Categoria> categorias) {
         this(nome, descricao, precoCompra, precoVenda, quantidade, disponivel, dtCadastro, imagens,
@@ -90,11 +90,11 @@ public class Produto implements Serializable {
         this.id = id;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
