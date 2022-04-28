@@ -49,7 +49,8 @@
                     <div class="col-sm-10">
                         <textarea class="form-control"
                                   id="txtDescricao" placeholder="Descrição"
-                                  maxlength="1000" th:field="*{descricao}"></textarea>
+                                  maxlength="1000"
+                                  th:field="*{descricao}"></textarea>
                     </div>
                 </div>
                 <div class="row mb-3">
@@ -69,7 +70,7 @@
                     <div class="col-sm-10">
                         <input type="email" class="form-control"
                                id="txtEmail"  placeholder="E-mail válido"
-                               required
+                               maxlength="100" required
                                th:field="*{email}"
                                th:classappend="${#fields.hasErrors('email')}? is-invalid"
                                />
@@ -81,8 +82,11 @@
                     <div class="col-sm-10">
                         <input type="text" class="form-control"
                                id="txtTelefone" placeholder="Formato (99) 99999-9999"
+                               maxlength="20"
                                th:field="*{telefone}"
+                               th:classappend="${#fields.hasErrors('telefone')}? is-invalid"
                                />
+                        <div class="invalid-feedback" th:if="${#fields.hasErrors('telefone')}" th:errors="*{telefone}"></div>
                     </div>
                 </div>
 
@@ -123,7 +127,7 @@
                     <div class="col-sm-10">
                         <input type="number" class="form-control"
                                id="txtAltura" placeholder="Altura em metros com no máximo 2 casa decimais"
-                               min="0" step="0.01"
+                               min="0" max="3" step="0.01"
                                th:field="*{altura}"
                                th:classappend="${#fields.hasErrors('altura')}? is-invalid"
                                />
@@ -135,7 +139,7 @@
                     <div class="col-sm-10">
                         <input type="number" class="form-control"
                                id="txtPeso" placeholder="Peso em Kg com no máximo 1 casa decimal"
-                               min="0" step="0.1"
+                               min="0" max="500" step="0.1"
                                th:field="*{peso}"
                                th:classappend="${#fields.hasErrors('peso')}? is-invalid"
                                />
@@ -183,7 +187,9 @@
                                    th:id="interesse + ${opcaoInteresse.id}" th:value="${opcaoInteresse.id}"
                                    th:field="*{interessesIds}"
                                    />
-                            <label class="form-check-label" th:for="interesse + ${opcaoInteresse.id}" th:text="${opcaoInteresse.nome}"></label>
+                            <label class="form-check-label"
+                                   th:for="interesse + ${opcaoInteresse.id}"
+                                   th:text="${opcaoInteresse.nome}"></label>
                         </div>
                     </div>
                 </fieldset>

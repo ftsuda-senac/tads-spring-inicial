@@ -97,7 +97,7 @@ public class DadosPessoaisRepositoryMockImpl implements DadosPessoaisRepository 
 //                "valmeida@teste.com.br", "(21) 91234-0088", "abcd1234", 21, "1.67", "79.0", 0, Arrays.asList(2, 4), "avatarf1.jpg", "");
 //        addNewItem(new DadosPessoais("Amanda Araujo", "aaraujo", "Bio da Amanda Araujo","1978-12-7",
 //                "aaraujo@teste.com.br", "(61) 97612-3490", "abcd1234", 75, "1.70", "75.0", 0, Arrays.asList(1, 2, 3), "avatarf2.jpg", "");
-//        addNewItem(new DadosPessoais("Gustavo Marques", "gmarques", "Bio do Gustavo Marques", "1985-10-26,
+//        addNewItem(new DadosPessoais("Gustavo Marques", "gmarques", "Bio do Gustavo Marques", "1985-10-26",
 //                "gmarques@teste.com.br", "(11) 96654-1928", "abcd1234", 8, "1.89", "91.0", 1, Arrays.asList(5), "avatarm2.jpg", "");
 //        addNewItem(new DadosPessoais("Beatriz Marinho", "bmarinho", "Bio da Beatriz Marinho", "1990-1-29",
 //                "bmarinho@teste.com.br", "(15) 91467-0912", "abcd1234", 21, "1.63", "75.5", 0, Arrays.asList(3, 4), "avatarf3.jpg", "");

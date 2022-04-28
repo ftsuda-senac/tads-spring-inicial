@@ -1,10 +1,5 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package br.senac.tads.dsw.exemplosspring;
 
-import br.senac.tads.dsw.exemplosspring.pessoas.DadosPessoais;
 import br.senac.tads.dsw.exemplosspring.pessoas.Interesse;
 import br.senac.tads.dsw.exemplosspring.pessoas.InteresseRepository;
 import java.util.List;

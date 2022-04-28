@@ -61,12 +61,19 @@ public class DadosPessoaisService {
                 dados.setSenha(dadosAntigos.getSenha());
                 dados.setSenhaRepetida(dadosAntigos.getSenha());
                 dados.setFotos(dadosAntigos.getFotos());
+                if (!dados.getFotos().isEmpty()) {
+                    for (FotoPessoa foto : dados.getFotos()) {
+                        // Simplificando para pegar sempre primeira foto caso tenha mais de uma
+                        dados.setArquivoFoto(foto.getNomeArquivo());
+                        break;
+                    }
+                }
                 dados.setDataCadastro(dadosAntigos.getDataCadastro());
                 dados.setCadastroAtivo(dadosAntigos.isCadastroAtivo());
             }
         } else {
             // Caso não exista, incluir informações adicionais padrão
-            String arquivoFoto = "padrao.jpg";
+            String arquivoFoto = "avatar-padrao.jpg";
             if (dados.getArquivoFoto() != null && dados.getArquivoFoto().length() > 0) {
                 arquivoFoto = dados.getArquivoFoto();
             }

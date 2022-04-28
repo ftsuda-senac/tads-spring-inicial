@@ -1,15 +1,16 @@
 package br.senac.tads.dsw.exemplosspring.pessoas;
 
 import java.util.Set;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 public class Interesse {
 
     private Integer id;
 
-    @NotEmpty
+    @NotBlank
     @Size(min = 1, max = 100)
+    // NAO PODE REPETIR
     private String nome;
 
     private Set<DadosPessoais> pessoas;

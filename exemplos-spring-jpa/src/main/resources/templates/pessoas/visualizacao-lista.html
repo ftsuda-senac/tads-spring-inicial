@@ -77,7 +77,7 @@
                 // Carrega imagem padrão para avatar caso a imagem original não exista
                 document.querySelectorAll('.pessoa-avatar').forEach(function(el) {
                         el.addEventListener('error', function(evt) {
-                        evt.currentTarget.src = '[(@{/img/padrao.jpg})]';
+                        evt.currentTarget.src = '[(@{/img/avatar-padrao.jpg})]';
                     });
                 });
                 

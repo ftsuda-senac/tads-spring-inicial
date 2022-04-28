@@ -108,7 +108,7 @@ public class DadosPessoaisController {
         return new ModelAndView("redirect:/pessoas");
     }
 
-    // Permite acessar a lista de interesses a partir de qualquer View acionada
+    // @ModelAttribute Permite acessar a lista de interesses a partir de qualquer View acionada
     // por esta classe @Controller
     // Porém, irá ser chamada mesmo em telas em que as opções não são usadas.
     @ModelAttribute("opcoesInteresses")

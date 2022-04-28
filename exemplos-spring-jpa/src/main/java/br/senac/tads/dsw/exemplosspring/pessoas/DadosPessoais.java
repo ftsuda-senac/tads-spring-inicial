@@ -20,6 +20,7 @@ import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
+// OBS: NOME DA TABELA NO BANCO DEVE SER "PESSOA"
 public class DadosPessoais {
 
     private Integer id;
@@ -30,6 +31,7 @@ public class DadosPessoais {
 
     @NotBlank
     @Size(max = 100)
+    // NAO PODE REPETIR
     private String apelido;
 
     @Size(max = 1000)
@@ -42,13 +44,16 @@ public class DadosPessoais {
 
     @Email
     @NotBlank
+    @Size(max = 100)
     private String email;
 
+    @Size(max = 20)
     private String telefone;
 
     private String senha;
 
     @Transient
+    // NAO SALVAR
     private String senhaRepetida;
 
     @Min(1)
@@ -79,7 +84,7 @@ public class DadosPessoais {
 
     private LocalDateTime dataCadastro;
 
-    // Utilitarios para funcionamento do cadastro
+    // NAO SALVAR DADOS ABAIXO - Utilitarios para funcionamento do cadastro
     @Transient
     @NotEmpty
     private List<Integer> interessesIds;
