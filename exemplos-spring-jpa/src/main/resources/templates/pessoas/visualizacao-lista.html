@@ -22,7 +22,7 @@
                              th:src="@{__${imagemUrlPrefix}__/__${dados.arquivoFoto}__}" 
                              th:alt-title="'Foto do perfil ' + ${dados.nome}" />
                         <div class="card-body flex-grow-1">
-                            <h5 class="card-title text-center" th:text="${dados.nome}"></h5>
+                            <h5 class="card-title text-center pessoa-nome" th:text="${dados.nome}"></h5>
                             <p class="card-text pessoa-descricao" th:text="${dados.descricao}"></p>
                         </div>
                         <ul class="list-group list-group-flush flex-grow-0 pessoa-interesses">
