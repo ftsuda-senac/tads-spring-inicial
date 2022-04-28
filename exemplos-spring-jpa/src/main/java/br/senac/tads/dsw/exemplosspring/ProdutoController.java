@@ -67,7 +67,7 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}/editar")
-    public ModelAndView editar(@PathVariable("id") long id) {
+    public ModelAndView editar(@PathVariable("id") int id) {
 
         Produto prod = produtoRepository.findById(id);
         if (prod.getCategorias() != null && !prod.getCategorias().isEmpty()) {
@@ -84,7 +84,9 @@ public class ProdutoController {
     }
 
     @PostMapping("/salvar")
-    public ModelAndView salvar(@ModelAttribute @Valid Produto produto, BindingResult bindingResult,
+    public ModelAndView salvar(
+            @ModelAttribute("produtos") @Valid Produto produto,
+            BindingResult bindingResult,
             RedirectAttributes redirAttr) {
         produto.setDtCadastro(LocalDateTime.now());
         if (produto.getIdsCategorias() != null && !produto.getIdsCategorias().isEmpty()) {
@@ -111,7 +113,7 @@ public class ProdutoController {
     }
 
     @PostMapping("/{id}/remover")
-    public ModelAndView remover(@PathVariable("id") Long id,
+    public ModelAndView remover(@PathVariable("id") int id,
             RedirectAttributes redirectAttributes) {
         produtoRepository.deleteById(id);
         redirectAttributes.addFlashAttribute("msgSucesso",

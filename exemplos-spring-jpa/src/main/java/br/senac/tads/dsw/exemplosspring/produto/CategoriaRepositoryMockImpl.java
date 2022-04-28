@@ -4,14 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import org.springframework.stereotype.Repository;
 
-import org.springframework.stereotype.Service;
-
-/**
- *
- * @author fernando.tsuda
- */
-@Service
+@Repository
 public class CategoriaRepositoryMockImpl implements CategoriaRepository {
 
     private Map<Integer, Categoria> mapItens;
