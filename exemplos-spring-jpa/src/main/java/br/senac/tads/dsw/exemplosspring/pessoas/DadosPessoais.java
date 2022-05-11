@@ -45,6 +45,7 @@ public class DadosPessoais {
     @Email
     @NotBlank
     @Size(max = 100)
+    // ASSUMINDO QUE O MESMO E-MAIL PODE REPETIR
     private String email;
 
     @Size(max = 20)
