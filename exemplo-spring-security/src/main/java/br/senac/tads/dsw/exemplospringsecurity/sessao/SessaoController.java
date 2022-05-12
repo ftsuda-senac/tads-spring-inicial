@@ -1,5 +1,6 @@
 package br.senac.tads.dsw.exemplospringsecurity.sessao;
 
+import br.senac.tads.dsw.exemplospringsecurity.dominio.UsuarioSistema;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,4 +45,13 @@ public class SessaoController implements Serializable {
         return this.itensSessao;
     }
 
+    @ModelAttribute("usuario")
+    public UsuarioSistema getUsuario() {
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        if (auth != null && auth.getPrincipal() instanceof UsuarioSistema) {
+//            return (UsuarioSistema) auth.getPrincipal();
+//        }
+        return null;
+    }
+    
 }

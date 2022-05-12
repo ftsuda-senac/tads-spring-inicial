@@ -1,14 +1,11 @@
 package br.senac.tads.dsw.exemplospringsecurity.dominio;
 
-/**
- *
- * @author fernando.tsuda
- */
 public class Papel {
 
     private String nome;
 
-    public Papel() {}
+    public Papel() {
+    }
 
     public Papel(String nome) {
         this.nome = nome;
