@@ -116,7 +116,6 @@ public class Pessoa {
 
     // ***** LISTENERS DO JPA *****
     // PERMITEM EXECUTAR ACOES ANTES E APOS SALVAR/OBTER DADOS DO BANCO
-
     // Configura a lista de IDs dos interesses selecionados após carregar dados da pessoa
     @PostLoad
     public void prepararIdsSelecionados() {

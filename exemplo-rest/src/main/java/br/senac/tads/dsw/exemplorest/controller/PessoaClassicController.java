@@ -39,7 +39,7 @@ public class PessoaClassicController {
     public ModelAndView listar(@RequestParam(value = "pagina", defaultValue = "0") int pagina,
             @RequestParam(value = "qtd", defaultValue = "10") int qtd) {
         Page<Pessoa> pessoas = pessoaRepository.findAll(PageRequest.of(pagina, qtd));
-        ModelAndView mv = new ModelAndView("pessoa/lista-template");
+        ModelAndView mv = new ModelAndView("pessoas/lista-template-old");
         mv.addObject("itens", pessoas);
         return mv;
     }
@@ -52,7 +52,7 @@ public class PessoaClassicController {
     @GetMapping("/novo")
     public ModelAndView abrirForm() {
         Pessoa p = new Pessoa();
-        ModelAndView mv = new ModelAndView("pessoa/form-template");
+        ModelAndView mv = new ModelAndView("pessoas/form-template-old");
         mv.addObject("item", p);
         return mv;
     }
@@ -61,7 +61,7 @@ public class PessoaClassicController {
     public ModelAndView editar(@PathVariable("id") Integer id, RedirectAttributes reditAttr) {
         Optional<Pessoa> optPessoa = pessoaRepository.findById(id);
         if (optPessoa.isPresent()) {
-            ModelAndView mv = new ModelAndView("pessoa/form-template");
+            ModelAndView mv = new ModelAndView("pessoas/form-template-old");
             mv.addObject("item", optPessoa.get());
             return mv;
         }
