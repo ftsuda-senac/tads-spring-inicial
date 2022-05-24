@@ -4,10 +4,16 @@ import java.util.List;
 
 /**
  * Após implementar UserDetais:
- * - isAccountNonExpired() -> Verificar se o cadastro do usuario está expirado (Ex: data de validade da conta)
- * - isAccountNonLocked() -> Verificar se usuário está bloqueado (Ec: quantidade de logins errados excedida)
- * - isCredentialsNonExpired() -> Verificar se a senha está expirada (Ex: X dias após ultima atualização da senha)
- * @author fernando.tsuda
+ *
+ * - isAccountNonExpired() -> Verificar se o cadastro do usuario está expirado
+ * (Ex: data de validade da conta)
+ *
+ * - isAccountNonLocked() -> Verificar se usuário está bloqueado (Ex: quantidade
+ * de logins errados excedida)
+ *
+ * - isCredentialsNonExpired() -> Verificar se a senha está expirada (Ex: X dias
+ * após ultima atualização da senha)
+ *
  */
 public class UsuarioSistema {
 
@@ -19,7 +25,8 @@ public class UsuarioSistema {
 
     private List<Papel> papeis;
 
-    public UsuarioSistema() {}
+    public UsuarioSistema() {
+    }
 
     public UsuarioSistema(String username, String nomeCompleto, String hashSenha,
             List<Papel> papeis) {
