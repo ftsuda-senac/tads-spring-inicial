@@ -69,8 +69,10 @@ public class DadosPessoaisClassicController {
         return mv;
     }
 
+    // TODO: Mover para RestController
     @GetMapping("/{id}/visualizar-json")
     @ResponseBody
+    @Deprecated
     public DadosPessoais visualizarDadosJson(@PathVariable("id") Integer id) {
         Optional<DadosPessoais> optPessoa = service.findById(id);
         if (!optPessoa.isPresent()) {
