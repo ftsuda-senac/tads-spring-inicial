@@ -8,6 +8,7 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +27,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
@@ -109,7 +109,11 @@ public class DadosPessoais {
 
     // "pessoa" é o nome do atributo na classe FotoPessoa
     // onde o @ManyToOne foi configurado - associação bidirecional
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pessoa")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "pessoa",
+            cascade = CascadeType.PERSIST, orphanRemoval = true)
+    // CascadeType.PERSIST -> Salva informações da foto "automaticamente"
+    // no banco junto com dados da pessoa ao incluir
+    // orphanRemoval -> Remove fotos "automaticamente" ao excluir a pessoa
     // Usando Set ("tipo de List/ArrayList") que evita objetos repetidos
     private Set<FotoPessoa> fotos;
 
@@ -119,7 +123,7 @@ public class DadosPessoais {
 
     // NAO SALVAR DADOS ABAIXO - Utilitarios para funcionamento do cadastro
     @Transient
-    @NotEmpty
+    //@NotEmpty
     private List<Integer> interessesIds;
 
     @Transient
@@ -129,28 +133,34 @@ public class DadosPessoais {
         interessesIds = new ArrayList<>();
     }
 
-    public DadosPessoais(String nome, String apelido, String descricao, String dataNascimento, String email, String telefone, String senha, int numero, String alturaStr, String pesoStr, int genero, List<Integer> interessesIds, String arquivoFoto, String urlFotoGerada) {
-        this.setNome(nome);
-        this.setApelido(apelido);
-        this.setDescricao(descricao);
-        this.setDataNascimento(LocalDate.parse(dataNascimento));
-        this.setEmail(email);
-        this.setTelefone(telefone);
-        this.setSenha(senha);
-        this.setSenhaRepetida(senha);
-        this.setNumero(numero);
-        this.setAltura(new BigDecimal(alturaStr));
-        this.setPeso(new BigDecimal(pesoStr));
-        this.setGenero(genero);
-        this.setInteressesIds(interessesIds);
-        this.setArquivoFoto(arquivoFoto);
-        this.setInteressesIds(interessesIds);
-        this.setArquivoFoto(arquivoFoto);
+    public DadosPessoais(String nome, String apelido, String descricao,
+            String dataNascimentoStr, String email, String telefone, String senha,
+            int numero, String alturaStr, String pesoStr, int genero,
+            List<Integer> interessesIds, String arquivoFoto, String urlFotoGerada) {
+        this.nome = nome;
+        this.apelido = apelido;
+        this.descricao = descricao;
+        this.dataNascimento = LocalDate.parse(dataNascimentoStr);
+        this.email = email;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.senhaRepetida = senha;
+        this.numero = numero;
+        this.altura = new BigDecimal(alturaStr);
+        this.peso = new BigDecimal(pesoStr);
+        this.genero = genero;
+        this.interessesIds = interessesIds;
+        this.arquivoFoto = arquivoFoto;
     }
 
-    public DadosPessoais(Integer id, String nome, String apelido, String descricao, String dataNascimento, String email, String telefone, String senha, int numero, String alturaStr, String pesoStr, int genero, List<Integer> interessesIds, String arquivoFoto, String urlFotoGerada) {
-        this(nome, apelido, descricao, dataNascimento, email, telefone, senha, numero, alturaStr, pesoStr, genero, interessesIds, arquivoFoto, urlFotoGerada);
-        this.setId(id);
+    public DadosPessoais(Integer id, String nome, String apelido, String descricao,
+            String dataNascimento, String email, String telefone, String senha,
+            int numero, String alturaStr, String pesoStr, int genero,
+            List<Integer> interessesIds, String arquivoFoto, String urlFotoGerada) {
+        this(nome, apelido, descricao, dataNascimento, email, telefone,
+                senha, numero, alturaStr, pesoStr, genero,
+                interessesIds, arquivoFoto, urlFotoGerada);
+        this.id = id;
     }
 
     public Integer getId() {
@@ -297,7 +307,14 @@ public class DadosPessoais {
         this.interessesIds = interessesIds;
     }
 
+    // Tenta mapear arquivos salvos com prefixo avatar-padrao
+    // para arquivo único
+    // Resolve problema de duplicidade ao salvar no banco de dados sem ter 
+    // q implementar upload
     public String getArquivoFoto() {
+        if (arquivoFoto != null && arquivoFoto.startsWith("avatar-padrao")) {
+            return "avatar-padrao.jpg";
+        }
         return arquivoFoto;
     }
 

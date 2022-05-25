@@ -1,5 +1,6 @@
 package br.senac.tads.dsw.exemplorest.dominio;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -9,7 +10,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -36,6 +36,7 @@ public class FotoPessoa {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "pessoa_id") // FK
+    @JsonIgnore // Adicionar para evitar loop infinito ao gerar JSON
     private DadosPessoais pessoa;
     
     public FotoPessoa() {

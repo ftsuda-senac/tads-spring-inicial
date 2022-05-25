@@ -17,20 +17,17 @@
         
         <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">TADS DSW</a>
+                <a class="navbar-brand" href="/">TADS DSW</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/}">Home</a>
+                            <a class="nav-link" th:href="@{/classic/pessoas}">Pessoas MVC Tradicional</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/pessoas}">Pessoas</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/interesses}">Interesses</a>
+                            <a class="nav-link" th:href="@{/app-frontend/pessoas/lista.html}">Pessoas APP Frontend estático</a>
                         </li>
                     </ul>
                     <form class="d-flex">

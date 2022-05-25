@@ -5,8 +5,8 @@
     </head>
     <body>
         <div layout:fragment="conteudo">
-            <h1 th:if="${dados.id == null}">Inclusão de pessoa</h1>
-            <h1 th:unless="${dados.id == null}">Alteração de pessoa - ID <strong th:text="${dados.id}"></strong></h1>
+            <h1 th:if="${dados.id == null}">Inclusão de pessoa (VERSÃO MVC Tradicional)</h1>
+            <h1 th:unless="${dados.id == null}">Alteração de pessoa - ID <strong th:text="${dados.id}"></strong> (VERSÃO MVC Tradicional)</h1>
             <div class="alert alert-success" role="alert" th:if="${!#strings.isEmpty(msgSucesso)}">
                 <h4 class="alert-heading">Sucesso</h4>
                 <p class="mb-0" th:text="${msgSucesso}"></p>
@@ -16,7 +16,7 @@
                 <p class="mb-0" th:text="${msgErro}"></p>
             </div>
 
-            <form method="post" th:action="@{/pessoas/__${dados.id != null ? '' + dados.id + '/salvar' : 'salvar-novo'}__}" th:object="${dados}" novalidate>
+            <form method="post" th:action="@{/classic/pessoas/__${dados.id != null ? '' + dados.id + '/salvar' : 'salvar-novo'}__}" th:object="${dados}" novalidate>
 
                 <input type="hidden" th:if="*{id != null}" th:field="*{id}" />
 
@@ -197,7 +197,7 @@
                 <div class="row">
                     <div class="col-md-3 offset-md-3">
                         <div class="d-grid">
-                            <a th:href="@{/pessoas}" role="button" class="btn btn-outline-dark">Cancelar</a>
+                            <a th:href="@{/classic/pessoas}" role="button" class="btn btn-outline-dark">Cancelar</a>
                         </div>
                     </div>
                     <div class="col-md-3">
