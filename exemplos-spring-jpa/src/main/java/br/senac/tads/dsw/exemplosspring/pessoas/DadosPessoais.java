@@ -271,7 +271,14 @@ public class DadosPessoais {
         this.interessesIds = interessesIds;
     }
 
+    // Tenta mapear arquivos salvos com prefixo avatar-padrao
+    // para arquivo único
+    // Resolve problema de duplicidade ao salvar no banco de dados sem ter 
+    // q implementar upload
     public String getArquivoFoto() {
+        if (arquivoFoto != null && arquivoFoto.startsWith("avatar-padrao")) {
+            return "avatar-padrao.jpg";
+        }
         return arquivoFoto;
     }
 
