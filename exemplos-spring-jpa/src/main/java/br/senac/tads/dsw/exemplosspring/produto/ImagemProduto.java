@@ -5,10 +5,6 @@ import java.io.Serializable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author fernando.tsuda
- */
 public class ImagemProduto implements Serializable {
 
     private static final long serialVersionUID = 1L;

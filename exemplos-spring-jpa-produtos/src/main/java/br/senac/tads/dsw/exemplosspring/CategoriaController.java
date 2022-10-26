@@ -1,7 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties. To change this
- * template file, choose Tools | Templates and open the template in the editor.
- */
 package br.senac.tads.dsw.exemplosspring;
 
 import java.util.List;
@@ -21,11 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.senac.tads.dsw.exemplosspring.produto.Categoria;
 import br.senac.tads.dsw.exemplosspring.produto.CategoriaRepository;
+import java.util.Optional;
 
-/**
- *
- * @author fernando.tsuda
- */
 @Controller
 @RequestMapping("/categorias")
 public class CategoriaController {
@@ -46,7 +39,11 @@ public class CategoriaController {
 
     @GetMapping("/{id}/editar")
     public ModelAndView editar(@PathVariable("id") int id) {
-        Categoria cat = repository.findById(id);
+        Optional<Categoria> optCat = repository.findById(id);
+        if (!optCat.isPresent()) {
+            return new ModelAndView("redirect:/categorias");
+        }
+        Categoria cat = optCat.get();
         return new ModelAndView("categorias/form").addObject("categoria", cat);
     }
 

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.sql.DataSource;
 
@@ -37,7 +38,7 @@ public class CategoriaRepositoryJdbcImpl implements CategoriaRepository {
     }
 
     @Override
-    public Categoria findById(Integer id) {
+    public Optional<Categoria> findById(Integer id) {
         String sql = "SELECT NOME FROM CATEGORIA WHERE ID=?";
         try (Connection conn = dataSource.getConnection();
                 PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -48,13 +49,13 @@ public class CategoriaRepositoryJdbcImpl implements CategoriaRepository {
                     Categoria cat = new Categoria();
                     cat.setId(id); // Informado no parametro
                     cat.setNome(rs.getString("NOME"));
-                    return cat;
+                    return Optional.of(cat);
                 }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        return null;
+        return Optional.empty();
     }
 
     @Override

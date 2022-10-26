@@ -4,20 +4,17 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-
 import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author fernando.tsuda
- */
 @Service
 public class ProdutoRepositoryMockImpl implements ProdutoRepository {
 
@@ -27,6 +24,18 @@ public class ProdutoRepositoryMockImpl implements ProdutoRepository {
     private Map<Long, Produto> mapItens;
 
     private long sequenciaId = 0;
+    
+    private Set<Categoria> buildCategorias(Integer... catIds) {
+        List<Integer> categoriasIds = Arrays.asList(catIds);
+        Set<Categoria> categorias = new HashSet<>();
+        for (Integer catId  :categoriasIds) {
+            Optional<Categoria> optCat = categoriaRepository.findById(catId);
+            if (optCat.isPresent()) {
+                categorias.add(optCat.get());
+            }
+        }
+        return categorias;
+    }
 
     @PostConstruct
     public void init() {
@@ -44,8 +53,7 @@ public class ProdutoRepositoryMockImpl implements ProdutoRepository {
                                     "technics 2"),
                             new ImagemProduto("http://lorempixel.com/300/300/technics/7/",
                                     "technics 7"))),
-                    new LinkedHashSet<>(Arrays.asList(categoriaRepository.findById(1),
-                            categoriaRepository.findById(2))));
+                    buildCategorias(1, 2));
             mapItens.put(p.getId(), p);
 
             nomeProduto = "Roupa " + i;
@@ -58,8 +66,7 @@ public class ProdutoRepositoryMockImpl implements ProdutoRepository {
                                     "fashion 3"),
                             new ImagemProduto("http://lorempixel.com/300/300/fashion/6/",
                                     "fashion 6"))),
-                    new LinkedHashSet<>(Arrays.asList(categoriaRepository.findById(3),
-                            categoriaRepository.findById(4))));
+                    buildCategorias(3, 4));
             mapItens.put(p.getId(), p);
 
             nomeProduto = "Viagem " + i;
@@ -72,7 +79,7 @@ public class ProdutoRepositoryMockImpl implements ProdutoRepository {
                                     "animals 2"),
                             new ImagemProduto("http://lorempixel.com/300/300/animals/4/",
                                     "animals 4"))),
-                    new LinkedHashSet<>(Arrays.asList(categoriaRepository.findById(5))));
+                    buildCategorias(5));
             mapItens.put(p.getId(), p);
 
             nomeProduto = "Esporte " + i;
@@ -83,8 +90,7 @@ public class ProdutoRepositoryMockImpl implements ProdutoRepository {
                                     "sports 2"),
                             new ImagemProduto("http://lorempixel.com/300/300/sports/3/",
                                     "sports 3"))),
-                    new LinkedHashSet<>(Arrays.asList(categoriaRepository.findById(1),
-                            categoriaRepository.findById(3))));
+                    buildCategorias(1, 3));
             mapItens.put(p.getId(), p);
 
             nomeProduto = "Comida " + i;
@@ -94,8 +100,7 @@ public class ProdutoRepositoryMockImpl implements ProdutoRepository {
                             new ImagemProduto("http://lorempixel.com/300/300/food/1/", "food 1"),
                             new ImagemProduto("http://lorempixel.com/300/300/food/3/", "food 3"),
                             new ImagemProduto("http://lorempixel.com/300/300/food/9/", "food 9"))),
-                    new LinkedHashSet<>(Arrays.asList(categoriaRepository.findById(2),
-                            categoriaRepository.findById(4), categoriaRepository.findById(5))));
+                    buildCategorias(2, 5));
             mapItens.put(p.getId(), p);
 
             nomeProduto = "Diversão " + i;
@@ -106,27 +111,28 @@ public class ProdutoRepositoryMockImpl implements ProdutoRepository {
                                     "nightlife 2"),
                             new ImagemProduto("http://lorempixel.com/300/300/nightlife/10/",
                                     "nightlife 10"))),
-                    new LinkedHashSet<>(Arrays.asList(categoriaRepository.findById(3),
-                            categoriaRepository.findById(5))));
+                    buildCategorias(3, 5));
             mapItens.put(p.getId(), p);
         }
     }
 
     @Override
-    public List<Produto> findAll(int offset, int quantidade) {
+    public List<Produto> findAll(int pagina, int quantidade) {
+        int offset = pagina * quantidade;
         return new ArrayList<>(mapItens.values()).subList(offset,
                 Math.min(offset + quantidade, mapItens.size()));
     }
 
     @Override
-    public List<Produto> findByCategoria(List<Integer> idsCat, int offset, int quantidade) {
+    public List<Produto> findByCategoria(List<Integer> idsCat, int pagina, int quantidade) {
+        int offset = pagina * quantidade;
         return new ArrayList<>(mapItens.values()).subList(offset,
                 Math.min(offset + quantidade, mapItens.size()));
     }
 
     @Override
-    public Produto findById(Long id) {
-        return mapItens.get(id);
+    public Optional<Produto> findById(Long id) {
+        return Optional.ofNullable(mapItens.get(id));
     }
 
     @Override

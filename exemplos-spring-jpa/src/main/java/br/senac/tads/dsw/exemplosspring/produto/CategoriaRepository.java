@@ -1,12 +1,13 @@
 package br.senac.tads.dsw.exemplosspring.produto;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CategoriaRepository {
 
     List<Categoria> findAll();
 
-    Categoria findById(Integer id);
+    Optional<Categoria> findById(Integer id);
 
     Categoria save(Categoria cat);
 

@@ -6,10 +6,7 @@ import java.util.Set;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
-/**
- *
- * @author fernando.tsuda
- */
+
 public class Categoria implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -3,14 +3,11 @@ package br.senac.tads.dsw.exemplosspring.produto;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.stereotype.Service;
 
-/**
- *
- * @author fernando.tsuda
- */
 @Service
 public class CategoriaRepositoryMockImpl implements CategoriaRepository {
 
@@ -33,8 +30,8 @@ public class CategoriaRepositoryMockImpl implements CategoriaRepository {
     }
 
     @Override
-    public Categoria findById(Integer id) {
-        return mapItens.get(id);
+    public Optional<Categoria> findById(Integer id) {
+        return Optional.ofNullable(mapItens.get(id));
     }
 
     @Override

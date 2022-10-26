@@ -95,7 +95,6 @@ public class DadosPessoaisService {
             }
         }
         dados.setInteresses(interesses);
-
         return dadosPessoaisRepository.save(dados);
     }
 

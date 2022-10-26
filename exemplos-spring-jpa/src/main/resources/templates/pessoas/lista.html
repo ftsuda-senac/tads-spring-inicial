@@ -36,7 +36,7 @@
                             <div class="btn-group" role="group" aria-label="Ações">
                                 <a class="btn btn-info" role="button" th:href="@{/pessoas/{id}/visualizar(id=${dados.id})}"><i class="fas fa-eye"></i> Visualizar dados</a>
                                 <a class="btn btn-primary" role="button" th:href="@{/pessoas/{id}/alterar(id=${dados.id})}"><i class="fas fa-edit"></i> Alterar</a>
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalExcluir" th:attr="data-action-url=@{/pessoas/{id}/excluir(id=${dados.id})}, data-item-id=${dados.id}" ><i class="fas fa-trash-alt"></i> Excluir</button>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalExcluir" th:attr="data-action-url=@{/pessoas/{id}/excluir(id=${dados.id})}, data-item-id=${dados.id}"><i class="fas fa-trash-alt"></i> Excluir</button>
                             </div>
                         </td>
                     </tr>
