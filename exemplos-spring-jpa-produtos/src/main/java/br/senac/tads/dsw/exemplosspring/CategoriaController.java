@@ -38,9 +38,10 @@ public class CategoriaController {
     }
 
     @GetMapping("/{id}/editar")
-    public ModelAndView editar(@PathVariable("id") int id) {
+    public ModelAndView editar(@PathVariable("id") Integer id, RedirectAttributes redirAttr) {
         Optional<Categoria> optCat = repository.findById(id);
         if (!optCat.isPresent()) {
+            redirAttr.addFlashAttribute("msgErro", "Categoria com ID " + id + " não encontrado");
             return new ModelAndView("redirect:/categorias");
         }
         Categoria cat = optCat.get();

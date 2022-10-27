@@ -44,12 +44,11 @@ public class ProdutoController {
     }
 
     @GetMapping("/{id}/editar")
-    public ModelAndView editar(@PathVariable("id") long id) {
+    public ModelAndView editar(@PathVariable("id") Long id, RedirectAttributes redirAttr) {
         Optional<Produto> optProd = service.findById(id);
         if (!optProd.isPresent()) {
-            ModelAndView notFound = new ModelAndView("redirect:/produtos");
-            notFound.setStatus(HttpStatus.NOT_FOUND);
-            return notFound;
+            redirAttr.addFlashAttribute("msgErro", "Produto com ID " + id + " não encontrado");
+            return new ModelAndView("redirect:/produtos");
         }
         Produto prod = optProd.get();
         return new ModelAndView("produtos/form").addObject("produto", prod);
