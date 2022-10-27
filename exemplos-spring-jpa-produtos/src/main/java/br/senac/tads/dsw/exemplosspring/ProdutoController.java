@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,7 +35,6 @@ public class ProdutoController {
             @RequestParam(name = "pagina", defaultValue = "0") int pagina,
             @RequestParam(name = "qtd", defaultValue = "500") int qtd,
             @RequestParam(name = "idsCat", required = false) List<Integer> idsCat) {
-
         return new ModelAndView("produtos/lista").addObject("produtos", service.findAll(idsCat, pagina, qtd));
     }
 
@@ -47,7 +47,9 @@ public class ProdutoController {
     public ModelAndView editar(@PathVariable("id") long id) {
         Optional<Produto> optProd = service.findById(id);
         if (!optProd.isPresent()) {
-            return new ModelAndView("redirect:/produtos");
+            ModelAndView notFound = new ModelAndView("redirect:/produtos");
+            notFound.setStatus(HttpStatus.NOT_FOUND);
+            return notFound;
         }
         Produto prod = optProd.get();
         return new ModelAndView("produtos/form").addObject("produto", prod);
