@@ -12,32 +12,42 @@ import br.senac.tads.dsw.exemplospringsecurity.dominio.UsuarioSistema;
 public class UsuarioSistemaService {
 
     private final Map<String, UsuarioSistema> usuariosCadastrados = new LinkedHashMap<>();
-    
+
+//    // DESCOMENTAR NA CLASSE SecurityConfig O BLOCO DO PasswordEncoder
+//
 //    private PasswordEncoder passwordEncoder;
-//    
+//
 //    public UsuarioSistemaService(PasswordEncoder passwordEncoder) {
 //        this.passwordEncoder = passwordEncoder;
 //    }
 
     private String gerarHashSenha(String senhaAberta) {
         // return passwordEncoder.encode(senhaAberta);
-
-        // ***** VERSÃO INICIAL: RETORNANDO SENHA ABERTA - NÃO USAR EM PROJETOS REAIS
-        return senhaAberta;
+        return senhaAberta; // TROCAR PELO CODIGO ACIMA DEPOIS DE HABILITAR O passwordEncoder
     }
 
+    // SIMULA O "CADASTRO" DE USUARIOS HABILITADOS PARA ACESSAR A APLICAÇÃO
     @PostConstruct
     private void init() {
-        usuariosCadastrados.put("denver", new UsuarioSistema("denver", "Ricardo Ramos",
-                gerarHashSenha("abcd1234"), Arrays.asList(new Papel("ROLE_PEAO"))));
-        usuariosCadastrados.put("tokio", new UsuarioSistema("tokio", "Silene Oliveira",
-                gerarHashSenha("abcd1234"), Arrays.asList(new Papel("ROLE_PEAO"))));
+        String senhaAbertaPadrao = "abcd1234";
+        // @formatter:off
+        usuariosCadastrados.put("denver",
+                new UsuarioSistema("denver", "Ricardo Ramos",
+                        gerarHashSenha(senhaAbertaPadrao),
+                        Arrays.asList(new Papel("ROLE_PEAO"))));
+        usuariosCadastrados.put("tokio",
+                new UsuarioSistema("tokio", "Silene Oliveira",
+                        gerarHashSenha(senhaAbertaPadrao),
+                        Arrays.asList(new Papel("ROLE_PEAO"))));
         usuariosCadastrados.put("berlin",
-                new UsuarioSistema("berlin", "Andres de Fonollosa", gerarHashSenha("abcd1234"),
+                new UsuarioSistema("berlin", "Andres de Fonollosa",
+                        gerarHashSenha(senhaAbertaPadrao),
                         Arrays.asList(new Papel("ROLE_PEAO"), new Papel("ROLE_FODON"))));
         usuariosCadastrados.put("professor",
-                new UsuarioSistema("professor", "Sergio Marquina", gerarHashSenha("abcd1234"),
+                new UsuarioSistema("professor", "Sergio Marquina",
+                        gerarHashSenha(senhaAbertaPadrao),
                         Arrays.asList(new Papel("ROLE_PEAO"), new Papel("ROLE_GOD"))));
+        // @formatter:on
     }
 
 }
