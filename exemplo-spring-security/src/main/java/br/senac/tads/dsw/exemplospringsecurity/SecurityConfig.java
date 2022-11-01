@@ -1,6 +1,6 @@
 package br.senac.tads.dsw.exemplospringsecurity;
 
-// Alterações na configuração do Spring Security
+// Configuração do Spring Security pós versão 5.7/Boot 2.7
 // Ver https://spring.io/blog/2022/02/21/spring-security-without-the-websecurityconfigureradapter
 // @Configuration
 public class SecurityConfig {
