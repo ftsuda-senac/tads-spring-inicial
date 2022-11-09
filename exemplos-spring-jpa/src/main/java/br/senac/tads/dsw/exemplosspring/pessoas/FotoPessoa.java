@@ -1,9 +1,10 @@
 package br.senac.tads.dsw.exemplosspring.pessoas;
 
+import java.io.Serializable;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class FotoPessoa {
+public class FotoPessoa implements Serializable {
 
     private Integer id;
 

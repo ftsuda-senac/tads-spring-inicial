@@ -1,5 +1,6 @@
 package br.senac.tads.dsw.exemplosspring.pessoas;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
@@ -21,7 +22,7 @@ import javax.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 // OBS: NOME DA TABELA NO BANCO DEVE SER "PESSOA"
-public class DadosPessoais {
+public class DadosPessoais implements Serializable {
 
     private Integer id;
 

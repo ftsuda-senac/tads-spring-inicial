@@ -1,10 +1,11 @@
 package br.senac.tads.dsw.exemplosspring.pessoas;
 
+import java.io.Serializable;
 import java.util.Set;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class Interesse {
+public class Interesse implements Serializable {
 
     private Integer id;
 
