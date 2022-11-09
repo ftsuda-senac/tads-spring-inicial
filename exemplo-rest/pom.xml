@@ -70,7 +70,7 @@
         <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-ui</artifactId>
-                <version>1.6.8</version>
+                <version>1.6.12</version>
         </dependency>
         -->
         <!-- DESCOMENTAR DEPENDÊNCIA ABAIXO SE ESTIVER USANDO SPRING SECURITY -->
@@ -78,7 +78,7 @@
         <dependency>
                 <groupId>org.springdoc</groupId>
                 <artifactId>springdoc-openapi-security</artifactId>
-                <version>1.6.8</version>
+                <version>1.6.12</version>
         </dependency>
          -->
 
